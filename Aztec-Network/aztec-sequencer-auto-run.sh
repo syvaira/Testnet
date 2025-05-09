@@ -1,10 +1,27 @@
 #!/bin/bash
 
-###########################################################
-#                AZTEC NETWORK SEQUENCER NODE             #
-#                 Auto Run Setup Script                   #
-#              Maintained by Syvaira (2025)               #
-###########################################################
+
+# Gunakan ANSI 256 color codes
+BLUE_LOGO='\e[38;5;67m'    # Biru keunguan (mendekati #4F88C6)
+ORANGE_LOGO='\e[38;5;208m' # Oranye (mendekati #F57C2C)
+RESET='\e[0m'
+
+# Header ASCII Art - Biru logo
+echo -e "${BLUE_LOGO}███████╗██╗   ██╗██╗   ██╗ █████╗ ██╗██████╗  █████╗"
+echo -e "██╔════╝╚██╗ ██╔╝██║   ██║██╔══██╗██║██╔══██╗██╔══██╗"
+echo -e "███████╗ ╚████╔╝ ██║   ██║███████║██║██████╔╝███████║"
+echo -e "╚════██║  ╚██╔╝  ╚██╗ ██╔╝██╔══██║██║██╔══██╗██╔══██║"
+echo -e "███████║   ██║    ╚████╔╝ ██║  ██║██║██║  ██║██║  ██║"
+echo -e "╚══════╝   ╚═╝     ╚═══╝  ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝${RESET}"
+
+# Box info - Oranye dan biru logo
+echo -e "${ORANGE_LOGO}#####################################################"
+echo -e "#${BLUE_LOGO}            AZTEC NETWORK SEQUENCER NODE           ${ORANGE_LOGO}#"
+echo -e "#${BLUE_LOGO}               Auto Run Setup Script               ${ORANGE_LOGO}#"
+echo -e "#${BLUE_LOGO}            Maintained by Syvaira (2025)           ${ORANGE_LOGO}#"
+echo -e "#####################################################${RESET}"
+
+
 
 set -e
 
