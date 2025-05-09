@@ -22,12 +22,22 @@ show_header() {
   echo -e "#####################################################${RESET}\n"
 }
 
-show_step() { show_header; echo -e "\n${BLUE_LOGO}🔧 $1...${RESET}"; }
+show_step() { 
+  show_header
+  echo -e "\n${BLUE_LOGO}🔧 $1...${RESET}"
+  SECONDS=0
+}
+
+end_step() {
+  duration=$SECONDS
+  echo -e "${ORANGE_LOGO}✅ Completed in $((duration / 60)) minutes and $((duration % 60)) seconds.${RESET}\n"
+}
 
 install_dependencies() {
   show_step "Installing Dependencies"
   sudo apt-get update -qq && sudo apt-get upgrade -y -qq
   sudo apt install -y -qq curl iptables build-essential git wget lz4 jq make gcc nano automake autoconf tmux htop nvme-cli libgbm1 pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip libleveldb-dev
+  end_step
 }
 
 install_docker() {
@@ -37,6 +47,7 @@ install_docker() {
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
   sudo apt-get update -qq && sudo apt install -y -qq docker-ce docker-ce-cli containerd.io docker-compose-plugin
   sudo systemctl enable docker --quiet && sudo systemctl restart docker
+  end_step
 }
 
 install_aztec_tools() {
@@ -44,6 +55,7 @@ install_aztec_tools() {
   bash -i <(curl -s https://install.aztec.network) > /dev/null 2>&1
   echo 'export PATH="$HOME/.aztec/bin:$PATH"' >> ~/.bashrc
   source ~/.bashrc
+  end_step
 }
 
 configure_firewall() {
@@ -51,6 +63,7 @@ configure_firewall() {
   ufw allow 22 && ufw allow ssh
   ufw allow 40400 && ufw allow 8080
   ufw --force enable > /dev/null
+  end_step
 }
 
 run_sequencer_node() {
@@ -71,6 +84,7 @@ run_sequencer_node() {
     --p2p.maxTxPoolSize 1000000000
 
   echo -e "\n✅ Sequencer Node is running in a screen session named 'aztec'.\n"
+  end_step
 }
 
 # =========================== MAIN SCRIPT ============================
