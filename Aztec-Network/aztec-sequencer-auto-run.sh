@@ -25,12 +25,13 @@ show_header() {
 show_step() { 
   show_header
   echo -e "\n${BLUE_LOGO}🔧 $1...${RESET}"
-  SECONDS=0
+  START_TIME=$(date +%s)
 }
 
 end_step() {
-  duration=$SECONDS
-  echo -e "${ORANGE_LOGO}✅ Completed in $((duration / 60)) minutes and $((duration % 60)) seconds.${RESET}\n"
+  END_TIME=$(date +%s)
+  DURATION=$((END_TIME - START_TIME))
+  echo -e "${ORANGE_LOGO}✅ Completed in $((DURATION / 60)) minutes and $((DURATION % 60)) seconds.${RESET}\n"
 }
 
 install_dependencies() {
