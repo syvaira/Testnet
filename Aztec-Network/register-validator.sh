@@ -30,11 +30,11 @@ echo ""
 ETHEREUM_HOSTS=$L1_RPC_URLS
 
 # Create the command with user input
-command="aztec add-l1-validator --staking-asset-handler=0xF739D03e98e23A7B65940848aBA8921fF3bAc4b2 \
-  --l1-rpc-urls $ETHEREUM_HOSTS \
-  --l1-chain-id 11155111 \
-  --private-key $PRIVATE_KEY \
-  --attester $ATTESTER \
+command="aztec add-l1-validator --staking-asset-handler=0xF739D03e98e23A7B65940848aBA8921fF3bAc4b2
+  --l1-rpc-urls $ETHEREUM_HOSTS
+  --l1-chain-id 11155111
+  --private-key $PRIVATE_KEY
+  --attester $ATTESTER
   --proposer-eoa $PROPOSER_EOA "
 
 # Display the constructed command
