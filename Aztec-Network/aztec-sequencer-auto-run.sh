@@ -5,9 +5,10 @@ BLUE_LOGO='\e[38;5;67m'    # Biru keunguan
 ORANGE_LOGO='\e[38;5;208m' # Oranye cerah
 RESET='\e[0m'
 
-# =========================== ASCII HEADER ============================
-clear
-cat << "EOF"
+# ========================== FUNCTION DEFINITIONS ====================
+show_header() {
+  clear
+  cat << "EOF"
 ${BLUE_LOGO}███████╗██╗   ██╗██╗   ██╗ █████╗ ██╗██████╗  █████╗
 ██╔════╝╚██╗ ██╔╝██║   ██║██╔══██╗██║██╔══██╗██╔══██╗
 ███████╗ ╚████╔╝ ██║   ██║███████║██║██████╔╝███████║
@@ -16,24 +17,19 @@ ${BLUE_LOGO}███████╗██╗   ██╗██╗   ██╗ �
 ╚══════╝   ╚═╝     ╚═══╝  ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝${RESET}
 EOF
 
-# =========================== INFO BOX ================================
-echo -e "${ORANGE_LOGO}#####################################################"
-echo -e "#${BLUE_LOGO}            AZTEC NETWORK SEQUENCER NODE           ${ORANGE_LOGO}#"
-echo -e "#${BLUE_LOGO}               Auto Run Setup Script               ${ORANGE_LOGO}#"
-echo -e "#${BLUE_LOGO}            Maintained by Syvaira (2025)           ${ORANGE_LOGO}#"
-echo -e "#####################################################${RESET}\n"
+  echo -e "${ORANGE_LOGO}#####################################################"
+  echo -e "#${BLUE_LOGO}            AZTEC NETWORK SEQUENCER NODE           ${ORANGE_LOGO}#"
+  echo -e "#${BLUE_LOGO}               Auto Run Setup Script               ${ORANGE_LOGO}#"
+  echo -e "#${BLUE_LOGO}            Maintained by Syvaira (2025)           ${ORANGE_LOGO}#"
+  echo -e "#####################################################${RESET}\n"
+}
 
-set -e
-
-# ========================== FUNCTION DEFINITIONS ====================
-show_step() { clear; echo -e "\n${BLUE_LOGO}🔧 $1...${RESET}"; }
+show_step() { show_header; echo -e "\n${BLUE_LOGO}🔧 $1...${RESET}"; }
 
 install_dependencies() {
   show_step "Installing Dependencies"
   sudo apt-get update -qq && sudo apt-get upgrade -y -qq
-  sudo apt install -y -qq curl iptables build-essential git wget lz4 jq make gcc nano \
-    automake autoconf tmux htop nvme-cli libgbm1 pkg-config libssl-dev libleveldb-dev \
-    tar clang bsdmainutils ncdu unzip libleveldb-dev
+  sudo apt install -y -qq curl iptables build-essential git wget lz4 jq make gcc nano automake autoconf tmux htop nvme-cli libgbm1 pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip libleveldb-dev
 }
 
 install_docker() {
@@ -80,6 +76,7 @@ run_sequencer_node() {
 }
 
 # =========================== MAIN SCRIPT ============================
+show_header
 install_dependencies
 install_docker
 install_aztec_tools
